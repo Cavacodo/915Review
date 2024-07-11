@@ -1,0 +1,4 @@
+{
+    "C_Cpp.default.cppStandard": "c++17",
+    "c-cpp-compile-run.cpp-flags": "-Wall -Wextra -g3 -std=c++17"
+}
