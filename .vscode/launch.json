@@ -2,11 +2,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(lldb) Debugger",
-            "type": "cppdbg",
+            "name": "lldb Debugger",
+            "type": "lldb",
             "request": "launch",
             "program": "${fileDirname}/output/${fileBasenameNoExtension}",
-            "args": [],
+            "args": [
+                
+            ],
+            "preLaunchTask": "clang++_debug",
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
