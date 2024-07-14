@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "lldb Debugger",
+            "name": "C++ Debugger",
             "type": "lldb",
             "request": "launch",
             "program": "${fileDirname}/output/${fileBasenameNoExtension}",
