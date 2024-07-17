@@ -65,6 +65,7 @@
     "files.associations": {
         "iostream": "cpp",
         "vector": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "deque": "cpp"
     }
 }
