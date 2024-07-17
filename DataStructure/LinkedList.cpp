@@ -17,6 +17,7 @@ public:
         return data;
     }
     ListNode getNext(){
+        if(next == nullptr) return NULL;
         return *next;
     }
     void setNext(ListNode* ll){
@@ -32,7 +33,19 @@ public:
     }
 };
 
+ListNode* dummyHead = new ListNode();
+
+// void addHead(ListNode* ll){
+//     ListNode cur;
+//     if(&dummyHead->getNext() != nullptr){
+//         cur = dummyHead->getNext();
+//         ll->setNext(&cur);
+//     }
+//     dummyHead->setNext(ll);
+// }
+//TODO Debugging
 int main(){
+    ListNode a = dummyHead->getNext();
     ListNode* n0 = new ListNode();
     ListNode* n1 = new ListNode(1);
     ListNode* n2 = new ListNode(2);
@@ -40,7 +53,8 @@ int main(){
     n0->setNext(n1);
     n1->setNext(n2);
     n2->setNext(n3);
-    n0->display();
+    // addHead(n0);
+    dummyHead->display();
     delete n0;
     delete n1;
     delete n2;
