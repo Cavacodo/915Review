@@ -66,6 +66,7 @@
         "iostream": "cpp",
         "vector": "cpp",
         "string": "cpp",
-        "deque": "cpp"
+        "deque": "cpp",
+        "queue": "cpp"
     }
 }
