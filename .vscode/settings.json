@@ -68,6 +68,7 @@
         "string": "cpp",
         "deque": "cpp",
         "queue": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "map": "cpp"
     }
 }

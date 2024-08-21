@@ -73,6 +73,7 @@ void dijkstra(int graph[V][V], int src)
             // there is an edge from u to v, and total
             // weight of path from src to  v through u is
             // smaller than current value of dist[v]
+            // dist[u] + graph[u][v]才是核心
             if (!sptSet[v] && graph[u][v]
                 && dist[u] != INT_MAX
                 && dist[u] + graph[u][v] < dist[v])
@@ -97,7 +98,7 @@ int main()
                         { 8, 11, 0, 0, 0, 0, 1, 0, 7 },
                         { 0, 0, 2, 0, 0, 0, 6, 7, 0 } };
  
-    dijkstra(graph, 0);
+    dijkstra(graph, 1);
  
     return 0;
 }
