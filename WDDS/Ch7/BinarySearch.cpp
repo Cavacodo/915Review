@@ -45,7 +45,7 @@ int binary_search3(int* nums,int k){
         if(nums[mid] < k) low = mid;
         else high = mid;
     }
-    return low; //只能是low )(情况出现
+    return low; //只能是low )(情况出现 
 }
 
 int main()
