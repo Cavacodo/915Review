@@ -16,6 +16,8 @@ int main()
     }
 
     cout << "查找在不在队列中" << endl;
+    //查找不能像map一样直接使用[]访问，也不能使用.at
+    //可以使用uset.count()起一样的作用
     if(uset.find(10) != uset.end()){
         cout << "在集合中" << endl;
     }else{

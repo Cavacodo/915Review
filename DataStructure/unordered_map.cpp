@@ -16,6 +16,11 @@ int main()
     umap.insert({2,3});
     umap.insert({3,4});
     umap[4] = 5;    //这样也可以
+    cout << umap[4] << endl;    //可以这样找value
+    cout << umap.at(4) << endl;
+    cout << umap.count(4) << endl;  //返回键值对个数（冲突？）
+    cout << (umap.find(4) != umap.end()) << endl; //有没有这个值 注意是!=，在末尾前找到
+    cout << umap[100] << endl;
     //遍历元素
     cout << "元素遍历" << endl;
     for(auto it = umap.begin(); it != umap.end(); it++){
