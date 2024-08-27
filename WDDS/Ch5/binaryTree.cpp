@@ -3,6 +3,61 @@ using namespace std;
 typedef struct TreeNode{
     int data;
     struct TreeNode *L,*R;
+    // 非递归的前中后序遍历
+    void preOrder_non_recursive(TreeNode* root){
+        deque<TreeNode*> dq;
+        while(root != nullptr || !dq.empty()){
+            if(root != nullptr){
+                cout << root->data << "\t";
+                dq.push_back(root);
+                root = root->L;
+            }else{
+                root = dq.back();
+                dq.pop_back();
+                root = root->R;
+            }
+        }
+        cout << endl;
+    }
+    void inOrder_non_recursive(TreeNode* root){
+        deque<TreeNode*> dq;
+        while(root != nullptr || !dq.empty()){
+            if(root != nullptr){
+                dq.push_back(root);
+                root = root->L;
+            }else{
+                root = dq.back();
+                cout << root->data << "\t";
+                dq.pop_back();
+                root = root->R;
+            }
+        }
+        cout << endl;
+    }
+    // 后序比较难
+    void postOrder_non_recursive(TreeNode* root){
+        deque<TreeNode*> dq;
+        TreeNode* predecessor = nullptr;
+        while(root != nullptr || !dq.empty()){
+            if(root != nullptr){
+                dq.push_back(root);
+                root = root->L;
+            }else{
+                root = dq.back();
+                if(root->R != nullptr && root->R != predecessor){   //防止回退到父节点后重复入栈
+                    root = root->R;
+                    dq.push_back(root);
+                    root = root->L;
+                }else{
+                    dq.pop_back();
+                    cout << root->data << "\t";
+                    predecessor = root;
+                    root = nullptr;
+                }
+            }
+        }
+        cout << endl;
+    }
 }Node,*Tree;
 
 void InitTree(Tree &t){
@@ -71,6 +126,7 @@ int main()
     addNode(t,1,0);
     addNode(t,2,1);
     addNode(t->L,3,0);
+    addNode(t->L,9,1);
     addNode(t->L->L,4,0);
     LevelOrder(t);
     preOrder(t);
@@ -78,5 +134,10 @@ int main()
     inOrder(t);
     cout << endl;
     postOrder(t);
+    cout << endl;
+    cout << "Non Recursive" << endl;
+    t->preOrder_non_recursive(t);
+    t->inOrder_non_recursive(t);
+    t->postOrder_non_recursive(t);
     return	0;
 }
