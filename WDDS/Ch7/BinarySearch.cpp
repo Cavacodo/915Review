@@ -13,8 +13,9 @@ void showResult(int* res){
 }
 // <=时，使用 > (high = mid - 1) < (low = mid + 1)
 // 双闭区间[]
+// 哪一端闭合就给哪一端+1 -1，开着的就是mid
 int binary_search(int* nums,int k){
-    int low = 0, high = N-1,mid;
+    int low = 0, high = N-1, mid;
     while(low <= high){ //闭区间使用mid + 1 mid - 1 防止陷入死循环
         mid = (low + high) >> 1;
         if(nums[mid] == k) return mid;
@@ -40,7 +41,7 @@ int binary_search2(int* nums,int k){
 // 开区间
 int binary_search3(int* nums,int k){
     int low = -1, high = N, mid;
-    while(low + 1 < high){ //low + 1 == high () low + 1 > high要么重合要么)(都是空
+    while(low + 1 < high){ //low + 1 == high () low + 1 > high要么重合要么)(都是空 重点在与区间内能不能有元素
         mid = (low + high) >> 1;
         if(nums[mid] < k) low = mid;
         else high = mid;
