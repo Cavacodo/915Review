@@ -15,7 +15,7 @@ int main()
     umap.insert({1,2});
     umap.insert({2,3});
     umap.insert({3,4});
-    umap[4] = 5;    //这样也可以
+    umap[4] = 5;    //这样也可以 从0开始的
     cout << umap[4] << endl;    //可以这样找value
     cout << umap.at(4) << endl;
     cout << umap.count(4) << endl;  //返回键值对个数（冲突？）
