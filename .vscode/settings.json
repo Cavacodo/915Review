@@ -71,7 +71,8 @@
         "ostream": "cpp",
         "map": "cpp",
         "complex": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "unordered_set": "cpp"
     },
     "terminal.integrated.fontSize": 14
 }
