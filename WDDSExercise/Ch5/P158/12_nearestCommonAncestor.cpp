@@ -2,7 +2,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct TreeNode {
+struct TreeNode
+{
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -11,33 +12,52 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-deque<TreeNode*> s1;
-deque<TreeNode*> s2;
-void dfs(TreeNode* root, TreeNode* p, TreeNode* q){
-        if(root == NULL) return;
-        dfs(root->left,p,q);
-        dfs(root->right,p,q);
-        if(s1.front() == (root->left) || s1.front() == (root->right)){
-            s1.push_front(root);
-        }
-        if(s2.front() == (root->left) || s2.front() == (root->right)){
-            s2.push_front(root);
-        }
+deque<TreeNode *> s1;
+deque<TreeNode *> s2;
+void dfs(TreeNode *root, TreeNode *p, TreeNode *q)
+{
+    if (root == NULL)
+        return;
+    dfs(root->left, p, q);
+    dfs(root->right, p, q);
+    if (s1.front() == (root->left) || s1.front() == (root->right))
+    {
+        s1.push_front(root);
     }
-TreeNode* nearestCommonAncestor(TreeNode* root,TreeNode* p,TreeNode *q){
+    if (s2.front() == (root->left) || s2.front() == (root->right))
+    {
+        s2.push_front(root);
+    }
+}
+TreeNode *nearestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q)
+{
     s1.push_front(p);
     s2.push_front(q);
-    dfs(root,p,q);
-    unordered_set<TreeNode*> set;
-    for(auto &i : s1) set.insert(i);
-    for(int i = s2.size()-1; i >= 0; i--){
-        if(set.count(s2[i])) return s2[i];
+    dfs(root, p, q);
+    unordered_set<TreeNode *> set;
+    for (auto &i : s1)
+        set.insert(i);
+    for (int i = s2.size() - 1; i >= 0; i--)
+    {
+        if (set.count(s2[i]))
+            return s2[i];
     }
+    return root;
+}
+//这个方法简单，NB
+//逐步分割，找到包含两个节点的最小子树
+TreeNode *nearestCommonAncestor_concise_dfs(TreeNode *root, TreeNode *p, TreeNode *q)
+{
+    if(root == nullptr || root == p || root == q) return root;
+    TreeNode *l = nearestCommonAncestor_concise_dfs(root->left,p,q);
+    TreeNode *r = nearestCommonAncestor_concise_dfs(root->right,p,q);
+    if(!l) return r;
+    if(!r) return l;
     return root;
 }
 int main()
 {
-    TreeNode* root = new TreeNode(3);
+    TreeNode *root = new TreeNode(3);
     root->left = new TreeNode(5);
     root->right = new TreeNode(1);
     root->left->left = new TreeNode(6);
@@ -46,6 +66,6 @@ int main()
     root->left->right->right = new TreeNode(4);
     root->right->left = new TreeNode(0);
     root->right->right = new TreeNode(8);
-    cout << nearestCommonAncestor(root,root->left,root->left->right->right)->val <<endl;
-    return	0;
+    cout << nearestCommonAncestor_concise_dfs(root, root->left, root->left->right->right)->val << endl;
+    return 0;
 }
