@@ -7,24 +7,34 @@ struct Queue{
         s2.push(n);
     }
     int Dequeue(){
+        while(!s2.empty()){
+            int i = s2.top();
+            s1.push(i);
+            s2.pop();
+        }
         if(s1.empty()) return -1;
-        int i = s1.top();
+        int t = s1.top();
         s1.pop();
-        return i;
+        while(!s1.empty()){
+            int i = s1.top();
+            s2.push(i);
+            s1.pop();
+        }
+        return t;
     }
     bool isEmpty(){
-        return s1.empty();
+        return s2.empty();
     }
     void showQueue(){
         vector<int> v;
-        while(!s1.empty()){
-            int i = s1.top();
+        while(!s2.empty()){
+            int i = s2.top();
             cout << i << "\t";
             v.push_back(i);
-            s1.pop();
+            s2.pop();
         }
         for(int i = v.size()-1; i >= 0; i--){
-            s1.push(v[i]);
+            s2.push(v[i]);
         }
         cout << endl;
     }

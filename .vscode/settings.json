@@ -70,5 +70,6 @@
         "queue": "cpp",
         "ostream": "cpp",
         "map": "cpp"
-    }
+    },
+    "terminal.integrated.fontSize": 14
 }
