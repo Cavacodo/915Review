@@ -31,6 +31,7 @@ TreeNode* findLeaves(TreeNode* root){
     if(!root->left && !root->right) return root;
     TreeNode *l, *r;
     // 之前的野指针就是在没有判断好空，认为一定没有空指针，但也可能出现野指针
+    // 非叶子节点没有明确返回值
     if(root->left){
         l = findLeaves(root->left);
         if(l) uset.insert(l);
