@@ -33,8 +33,5 @@ public:
 };
 int main()
 {
-    vector<int> pre = {1,2,3};
-    vector<int> in = {1,2,3};
-    TreeNode* r = buildTree(pre,in);
-    return 0;
+    
 }
