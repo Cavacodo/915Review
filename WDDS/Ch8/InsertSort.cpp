@@ -16,6 +16,7 @@ void InserSort(int *nums){
         if(nums[i] < nums[i-1]){
             sentinel = nums[i];
             // 注意此处是从后往前遍历
+            // 发生了值的改变
             for(j = i-1; nums[j] > sentinel && j >= 0; j--){
                 nums[j+1] = nums[j];
             }

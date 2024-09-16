@@ -31,7 +31,6 @@ bool headInsert(LinkList &L,int x){
     L->next = t;
     return true;
 }
-//TODO 删除，查找
 int main()
 {
     

@@ -118,7 +118,6 @@ void LevelOrder(Tree t){
         cout << endl;
     }
 }
-//TODO 差一个节点删除
 int main()
 {
     Tree t;
