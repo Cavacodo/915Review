@@ -73,7 +73,8 @@
         "complex": "cpp",
         "valarray": "cpp",
         "unordered_set": "cpp",
-        "numeric": "cpp"
+        "numeric": "cpp",
+        "__bit_reference": "cpp"
     },
     "terminal.integrated.fontSize": 14
 }
