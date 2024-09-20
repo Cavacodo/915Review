@@ -6,14 +6,10 @@ typedef struct studentGrades{
     int grades;
 }sGrades;
 
-void stableSort(sGrades* sv,int n){
+void bubbleSort(sGrades* sv,int n){
     for(int i = 0; i < n-1; i++){
-        int max = sv[i].grades;
-        for(int j = i+1; j < n; j++){
-            if(sv[j].grades > max){
-                max = sv[j].grades;
-                swap(sv[i],sv[j]);
-            }
+        for(int j = 0; j < n-i-1; j++){
+            if(sv[j].grades < sv[j+1].grades) swap(sv[j],sv[j+1]);
         }
     }
 }
@@ -30,7 +26,7 @@ void print(){
         cin >> s >> score;
         grades[cnt++] = {s,score};
     }
-    stableSort(grades,m);
+    bubbleSort(grades,m);
     cout << endl;
     for(auto &i : grades) cout << i.name << i.grades << endl;
 }
