@@ -77,7 +77,8 @@
         "__bit_reference": "cpp",
         "__hash_table": "cpp",
         "__node_handle": "cpp",
-        "__tree": "cpp"
+        "__tree": "cpp",
+        "algorithm": "cpp"
     },
     "terminal.integrated.fontSize": 14
 }
