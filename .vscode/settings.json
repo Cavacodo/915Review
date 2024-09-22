@@ -78,7 +78,8 @@
         "__hash_table": "cpp",
         "__node_handle": "cpp",
         "__tree": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "random": "cpp"
     },
     "terminal.integrated.fontSize": 14
 }
