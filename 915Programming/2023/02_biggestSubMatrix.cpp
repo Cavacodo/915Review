@@ -58,6 +58,7 @@ void solve(vector<vector<int>> prefix){
     cout << "max val == " << gans << endl;
     cout << x.x << '\t' << x.y << endl;
     cout << y.x << '\t' << y.y << endl; 
+
 }
 
 int main()
