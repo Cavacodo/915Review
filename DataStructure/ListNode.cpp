@@ -20,7 +20,10 @@ struct ListNode {
 
 int main()
 {
-    
-    
+    ListNode* head = new ListNode(0);
+    head->next = head;
+    cout << head->next << endl;
+    cout << head << endl;
+    cout << &head << endl;
     return	0;
 }

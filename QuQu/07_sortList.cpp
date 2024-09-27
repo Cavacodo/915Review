@@ -29,12 +29,17 @@ struct ListNode
 };
 
 // QuickSort
+
+// 一个用于遍历（上述代码中的q）。一个用于存放哨兵的位置（上述代码中的p）。
+// 整个过程中，p指针左边的值都比哨兵值小，右边的值都比哨兵值大。从而一趟下来，固定了哨兵的位置，并且把待排序序列分为了两个子序列。
+// 接下来对这两个子序列递归的排序即可。
 ListNode* solve(ListNode* head, ListNode* pend){
     if(!head||head->next==pend) return head;
     int val = head->val;
     ListNode* p = head;
     ListNode* q = p->next;
     while(q!=pend){
+        // 把大的位置留出来，这块好好看，不好理解
         if(q->val < val){
             p = p->next;
             swap(p->val, q->val);
