@@ -27,6 +27,7 @@ int find_opt(int pa[],int x){
 //不能做路径压缩，不然树型被毁了
 void Union_opt(int pa[],int x,int y){
     //这里找到的是最祖先的，pa数组存储的是最直接的父亲
+    //把小的合并到大的上
     int root1 = find(pa,x);
     int root2 = find(pa,y);
     if(root1 == root2) return;
