@@ -1,4 +1,4 @@
-# Review
+### Review
 
 ## 第一章
 
@@ -69,28 +69,41 @@ $f(n)$:规约过程及组合子问题解工作量
 设$a \geq 1, b > 1 ,且令 \varepsilon > 0$
 
 若
+$$
+f(n) = \Omicron(n^{log_ba-\varepsilon})
+$$
+则
 
-​															$f(n) = \Omicron(n^{log_ba-\varepsilon})$
+$$
+T(n) = \Theta(n^{log_ba})
+$$
+若
+
+$$
+f(n) = \Omega(n^{log_ba+\varepsilon})
+$$
+
 
 则
 
-​															$T(n) = \Theta(n^{log_ba})$
+$$
+T(n) = \Theta(f(n))
+$$
+
 
 若
 
-​															$f(n) = \Omega(n^{log_ba+\varepsilon})$
+$$
+f(n) = \Theta(n^{log_ba}log^kn)
+$$
+
 
 则
 
-​															$T(n) = \Theta(f(n))$
+$$
+T(n) = \Theta(n^{log_ba}log^{k+1}n)
+$$
 
-若
-
-​															$f(n) = \Theta(n^{log_ba}log^kn)$
-
-则
-
-​															$T(n) = \Theta(n^{log_ba}log^{k+1}n)$
 
 #### 常见的时间复杂度大小比较
 
@@ -252,4 +265,254 @@ A+B*(C-D)-E/F
 (A(B(CD)-)*)+(EF)/)-
 ABCD-*+EF-
 ```
+
+入栈出栈规则
+
+1) ==遇到操作数== 直接加入后缀表达式
+2) ==遇到界限符== 如果是 ' ( ' 直接入栈。如果是 ' ) '，依次弹出栈中运算符，并加入后缀表达式。直到弹出' ( ' 为止。
+3) ==遇到运算符== 若其优先级高于除去" ( " 以外的栈顶运算符，并加入后缀表达式，否则(<=)则取出两个操作数，运算后加入再加入该栈
+
+![img](https://img2020.cnblogs.com/blog/1358881/202005/1358881-20200510203222875-1233268295.png)
+
+#### 后缀表达式求值
+
+![img](https://s2.51cto.com/images/blog/202108/08/411d4a31fb8904571dffab79ab41bf96.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp)
+
+#### 栈在递归中应用
+
+栈在每一次递归中把当前工作状态压入栈，后年才弹出计算
+
+#### 队列在计算机系统中的应用
+
+1) 缓冲区的逻辑结构
+2) 多队列出队/入队操作应用
+
+### 特殊数组的压缩存储
+
+#### 对称矩阵
+
+![img](https://images0.cnblogs.com/blog2015/740575/201505/161452034236173.gif)
+
+下标对应情况如下：
+
+i,j从1开始	1 <= i , j <= n
+
+使用B[n*(n-1)/2]开始
+
+数组下标从k = 0开始
+$$
+k=
+\begin{cases}
+\frac{i(i-1)}{2}+j-1,\quad i\geq j(下三角区和主对角线元素)\\
+\frac{j(j-1)}{2}+i-1, \quad i<j(上三角)
+\end{cases}
+\tag{1}
+$$
+
+#### 三角矩阵
+
+![img](https://images0.cnblogs.com/blog2015/740575/201505/161513148929847.gif)
+
+除去上三角或下三角以外，剩下位置均是常数c
+
+使用B[n*(n-1)/2+1]个位置存储
+
+元素对应关系：
+$$
+k = \begin{cases}
+\frac{i(i-1)}{2} + j-1 \quad i\geq j(下三角区和对角线) \\
+\frac{n(n+1)}{2} \quad i<j(上三角区元素)
+\end{cases}
+$$
+
+#### 三对角矩阵
+
+![img](https://github.com/fmw666/Data-Structure/raw/master/pics/3/3.4.3(4).png)
+
+也叫带状矩阵
+
+存储方式如下：
+
+![img](https://docs.oldtimes.me/c.biancheng.net/cpp/uploads/allimg/120222/1-1202221I412553.jpg)
+
+由此可计算矩阵A中三条对角线上元素ai,j(1 <= i, j <= n, |i-j| <= 1)在一维数组B中存放的下标为k = 2i+j-3
+
+#### 稀疏矩阵
+
+使用三元组存储
+
+![稀疏矩阵之三元组压缩存储并且转置_稀疏矩阵](https://s2.51cto.com/images/blog/202305/17182304_6464ab080cb4329430.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184)
+
+也可以使用十字链表存储 
+
+![img](https://pic002.cnblogs.com/images/2012/457289/2012102211294516.jpg)
+
+---
+
+## 第四章
+
+### KMP
+
+假设串为 abcac
+
+##### PM(Partial Match)求法
+
+| 编号 |  1   |  2   |  3   |  4   |  5   |
+| :--: | :--: | :--: | :--: | :--: | :--: |
+|  S   |  a   |  b   |  c   |  a   |  c   |
+|  PM  |  0   |  0   |  0   |  1   |  0   |
+
+看前缀从前向后求
+
+向后移动的位数 == 已匹配的字符数 - 对应的PM
+
+##### next数组求法
+
+把PM整体右移一位得到next数组
+
+| 编号 |  1   |  2   |  3   |  4   |  5   |
+| :--: | :--: | :--: | :--: | :--: | :--: |
+|  S   |  a   |  b   |  c   |  a   |  c   |
+| next |  -1  |  0   |  0   |  0   |  1   |
+
+有时为了使得公式简洁，计算简单可以将数组整体+1
+
+| 编号 |  1   |  2   |  3   |  4   |  5   |
+| :--: | :--: | :--: | :--: | :--: | :--: |
+|  S   |  a   |  b   |  c   |  a   |  c   |
+| next |  0   |  1   |  1   |  1   |  2   |
+
+next[j]的含义是：当子串的第 j 个字符与主串发生失配时，跳到子串的next[ j ]位置重新与主串当前位置进行比较。
+
+##### nextval数组的计算
+
+|      模式串      |  a   |  b   |  c   |  a   |  c   |
+| :--------------: | :--: | :--: | :--: | :--: | :--: |
+|       下标       |  1   |  2   |  3   |  4   |  5   |
+|     next数组     |  0   |  1   |  1   |  1   |  2   |
+| next数组对应字母 |  -   |  a   |  a   |  a   |  b   |
+|     Nextval      |  0   |  1   |  1   |  0   |  2   |
+
+Nextval[0] 默认与next数组第一个一样
+
+如果next数组对应字母与模式串不同，nextval对应位置直接照抄
+
+如果相同,则nextval[i] 等于next数组nextval[next[i]]
+
+比如下标位4，都是a,则nextval = nextval[0]
+
+---
+
+## 第五章
+
+**树和二叉树可以是空树，但是度为m(m>0)的树不能是空树**；
+
+**树的层次** ： 从树根开始定义，根节点为第一层，它的孩子是第二层，依次类推。
+
+**有序树和无序树**：树中节点的各子树从左到右是有次序的，不能互换称为有序树，否则是无序树
+
+**路径和路径长度** ：两个节点之间的路径是两个节点之间所经过的节点序列构成的。路径长度是路径上所有的经过的边的个数。
+
+**森林**：m(m >= 0)颗互不相交的树的集合。
+
+### 二叉树
+
+#### 二叉树和度为2的树的区别
+
+1) 度为2的树至少有3个节点，二叉树可以为空树(度为m的树至少有m+1个节点)
+2) 度为2的树孩子的左右次序无关，但是二叉树有关
+
+#### 特殊的二叉树
+
+1) 满二叉树
+2) 完全二叉树(deg == 1的节点只能是0个或者1)，若n为奇数，每个分支节点都有左孩子和右孩子;n为偶数，编号最大的分支节点只有左孩子，没有右孩子
+3) 正则二叉树(树中只有度为0或2的节点)
+
+#### 遍历序列构建二叉树
+
+先序中序构建二叉树
+
+```cpp
+class Solution {
+public:
+    vector<int> pre;
+    vector<int> in;
+    unordered_map<int,int> map;
+    TreeNode* dfs(int pl,int pr,int il,int ir){
+        if(pl == pr) return nullptr;
+        int offset = map[pre[pl]] - il;
+        //  左闭右开区间
+        TreeNode* left = dfs(pl+1,pl+1+offset,il,il+offset);
+        TreeNode* right = dfs(pl+1+offset,pr,il+offset+1,ir);
+        return new TreeNode(pre[pl],left,right);
+    }
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        pre = preorder,in = inorder;
+        for(int i = 0; i < inorder.size(); i++) map[inorder[i]] = i;
+        int n = preorder.size();
+        return dfs(0,n,0,n);
+    }
+};
+```
+
+后序中序构建二叉树
+
+```cpp
+class Solution {
+public:
+    vector<int> in;
+    vector<int> post;
+    unordered_map<int,int> umap;
+    TreeNode* dfs(int pl,int pr,int il,int ir){
+        if(pl == pr) return nullptr;
+        int left_size = umap[post[pr-1]] - il;
+        TreeNode* left = dfs(pl,pl+left_size,il,il+left_size);
+        TreeNode* right = dfs(pl+left_size,pr-1,il+left_size+1,ir);
+        return new TreeNode(post[pr-1],left,right); 
+    }
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+        int n = inorder.size();
+        in = inorder;
+        post = postorder;
+        for(int i = 0 ; i < postorder.size(); i++) umap[inorder[i]] = i;
+        return dfs(0,n,0,n);
+    }
+};
+```
+
+### 树 森林
+
+#### 树的存储方法
+
+##### 1.双亲表示法
+
+![双亲表示法](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9f7b391cdce5428abf2156e46ed978f8~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp)
+
+##### 2.孩子表示法
+
+![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/f1519acba73751c197ac92723438fb12.png)
+
+##### 3.孩子兄弟表示法
+
+![img](https://img2020.cnblogs.com/blog/1662740/202104/1662740-20210402212730970-481741869.png)
+
+#### 树 森林的转换
+
+**树转二叉树的规则**：每个结点的左指针指向它的第一个孩子，右指针指向它在树中的相邻右兄弟，即左孩子右兄弟。由于根节点没有兄弟，因此树转二叉树没有右子树。
+
+**森林转二叉树**：先将森林中的每一颗树转换成二叉树，由于任意一颗树的右子树为空，若把森林中的第二颗树当作第一颗树的右子树，依次递归，得到树转二叉树。
+
+#### 树的遍历
+
+1) **先根遍历**：先访问根节点，再依次访问根结点的每棵子树，遍历子树时仍旧遵循先根后子树。
+2) **后根遍历** : 先依次遍历根节点的每棵子树，遍历子树仍旧遵循先子树后根的规则。再访问根结点。
+
+#### 森林的遍历
+
+1) **先序遍历森林**：若森林非空，访问森林中的第一颗树的根节点，先序遍历第一颗树中根节点的子树森林。先序遍历除去第一颗树之后剩余的树构成的森林。
+2) **中序遍历森林**：树中序遍历森林第一颗树的根节点。中序遍历除去第一颗树之后剩余的树构成的森林。
+
+### 树与二叉树的应用
+
+#### Huffman Encoding
 

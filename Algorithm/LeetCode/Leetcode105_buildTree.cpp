@@ -13,22 +13,24 @@ struct TreeNode
 
 class Solution {
 public:
-    vector<int> pre;
     vector<int> in;
-    unordered_map<int,int> map;
+    vector<int> post;
+    unordered_map<int,int> umap;
+    int len;
+    // 左闭右开
     TreeNode* dfs(int pl,int pr,int il,int ir){
-        if(pl == pr) return nullptr;
-        int offset = map[pre[pl]] - il;
-        //  左闭右开区间
-        TreeNode* left = dfs(pl+1,pl+1+offset,il,il+offset);
-        TreeNode* right = dfs(pl+1+offset,pr,il+offset+1,ir);
-        return new TreeNode(pre[pl],left,right);
+        if(pl == pr || pr <= 0) return nullptr;
+        // 右子树长度
+        int offset = ir - umap[post[pr-1]] - 1;
+        TreeNode* right = dfs(pr-offset-1,pr-1,ir-offset-1,ir-1);
+        TreeNode* left = dfs(pl,pr-offset-1,il,ir-offset-1);
+        return new TreeNode(post[pr-1],left,right);
     }
-    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
-        pre = preorder,in = inorder;
-        for(int i = 0; i < inorder.size(); i++) map[inorder[i]] = i;
-        int n = preorder.size();
-        return dfs(0,n,0,n);
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+        in = inorder,post = postorder;
+        len = inorder.size();
+        for(int i = 0; i < len; i++) umap[inorder[i]] = i;
+        return dfs(0,len,0,len);
     }
 };
 int main()
