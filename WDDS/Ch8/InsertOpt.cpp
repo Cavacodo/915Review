@@ -10,6 +10,7 @@ void showResult(int* res){
     cout << endl; 
 }
 
+
 void InserSort(int *nums){
     int i,j,sentinel;
     for(int i = 1; i < N; i++){

@@ -42,6 +42,5 @@ void Union_opt(int pa[],int x,int y){
 int main()
 {
     
-    
     return	0;
 }
