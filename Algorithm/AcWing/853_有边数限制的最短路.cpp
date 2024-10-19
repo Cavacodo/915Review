@@ -1,3 +1,6 @@
+// 本题的难点不在负权回路，因为有也不影响
+// 限定了K步，因此最多松弛K次。
+// 理解Backup的作用
 #include <bits/stdc++.h>
 using namespace std;
 #define N 510
