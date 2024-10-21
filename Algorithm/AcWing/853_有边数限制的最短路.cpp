@@ -38,6 +38,7 @@ int main()
             int from = edge.from;
             int to = edge.to;
             int weight = edge.weight;
+            // Backup保存上一步状态，防止出现遍历边时修改多步的情况出现
             if(backup[from] != INT_MAX){
                 distances[to] = min(distances[to],backup[from]+weight);
             }
