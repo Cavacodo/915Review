@@ -10,6 +10,7 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+// 叫postorder仅仅是因为在if判断时将树遍历完了
 bool postOrder(TreeNode* root,TreeNode* n){
     if(!root) return false;
     if(root == n || postOrder(root->left,n) || postOrder(root->right,n)){
