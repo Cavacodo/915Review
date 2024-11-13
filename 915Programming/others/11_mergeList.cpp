@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+
 struct ListNode {
     int val;
     ListNode *next;
@@ -16,6 +17,7 @@ struct ListNode {
         return head;
     }
 };
+
 
 /**
  * Definition for singly-linked list.
@@ -41,7 +43,6 @@ public:
         }
     }
 };
-
 int main()
 {
     
