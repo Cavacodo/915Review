@@ -36,6 +36,14 @@ void Iterator(int u){
     }
 }
 
+void Iterator_For(int u){
+    for(int p = h[u]; p != -1; p = nxt[p]){
+        int v = e[p];
+        int we = w[v];
+        cout << u << "--->" << v << '\t' <<  "weight:" << we << endl;
+    }
+}
+
 int main()
 {
     // m是边的个数，n是顶点个数
