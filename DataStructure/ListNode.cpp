@@ -21,9 +21,10 @@ struct ListNode {
 int main()
 {
     ListNode* head = new ListNode(0);
-    head->next = head;
+    ListNode* h2 = new ListNode(2);
+    head->next = h2;
     cout << head->next << endl;
-    cout << head << endl;
+    cout << &h2 << endl;    // 永远存放的是栈中的地址，指针的指针
     cout << &head << endl;
     return	0;
 }
