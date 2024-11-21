@@ -10,24 +10,18 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-int ans = 0;
-int dfs(TreeNode* root,TreeNode* k){
-    if(k == root) return 1;
-    if(root->left)  return dfs(root->left,k);
-    if(root->right) return dfs(root->right,k);
-    return 0;
-}
-int getAns(TreeNode* head,TreeNode* k){
-    if(dfs(head,k)) ans += dfs(head,k);
-    return ans;
+int dfs(TreeNode* head,TreeNode* p){
+    if(!head) return 0;
+    if(head == p) return 1;
+    // 这里不是判断大小的，是判断是不是0的
+    return 1 + max(dfs(head->left,p),dfs(head->right,p));
 }
 int main()
 {
-    TreeNode* head = new TreeNode(0);
-    head->left = new TreeNode(1);
-    head->right = new TreeNode(2);
-    head->left->left = new TreeNode(3);
-    head->left->left->left = new TreeNode(4);
-    cout << getAns(head,head->left->left->left) << endl;
+    TreeNode* head = new TreeNode(1);
+    head->left = new TreeNode(2);
+    head->right =  new TreeNode(3);
+    head->left->left = new TreeNode(4);
+    cout << dfs(head,head->left->left) << endl;
     return	0;
 }
