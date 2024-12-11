@@ -19,7 +19,7 @@ bool isAVL(TreeNode* root){
     if(root->right) return dfs(root->right) == 1;
     return false;
 }
-int main()
+int mian()
 {
     TreeNode* root = new TreeNode(1);
     root->left = new TreeNode(2);

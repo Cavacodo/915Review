@@ -30,7 +30,7 @@ void Iterator(int u){
     int p = h[u];   // 边的编号
     while(p != -1){
         int v = e[p];
-        int we = w[v];
+        int we = w[p];
         p = nxt[p];
         cout << u << "--->" << v << '\t' <<  "weight:" << we << endl;
     }
@@ -39,7 +39,7 @@ void Iterator(int u){
 void Iterator_For(int u){
     for(int p = h[u]; p != -1; p = nxt[p]){
         int v = e[p];
-        int we = w[v];
+        int we = w[p];
         cout << u << "--->" << v << '\t' <<  "weight:" << we << endl;
     }
 }
